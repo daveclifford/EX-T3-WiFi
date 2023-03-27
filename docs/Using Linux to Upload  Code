@@ -1,0 +1,38 @@
+Linux can be used to build/upload the Filesystem Image as well as build/upload the Fire Beetle control program.
+
+This guide defines a process and steps to install/check installation of the tools needed to to communicate from the Linux system to the Fire Beetle 2 and check user permissions to use the tools.
+
+Hardware to Be Used
+
+The FireBeetle 2 ESP32-E IoT Microcontroller with Header (SKU:DFR0654-F) communicates to an external wired device via a USB-C to USB-C (or USB-A) interface cable.
+
+The FireBeetle 2 ESP32-E USB to UART interface chip used to do this communication is a CH340K (vendor is identified as QinHeng Electronics).
+
+Checking If The USB Driver is Installed
+
+The Linux operating system communicates with internal and external devices via an extensive set of drivers provided by the kernel.
+
+The current linux driver providing the signal and control for the CH340K USB Bridge Controller is the CH341 driver. 
+
+The Linux Kernel V5 Series has ch341.ko driver support.
+
+A search in a new (2023-03-25) linux system kernel shows the CH341 usb serial driver is installed in
+
+/lib/modules/5.19.0-38-generic/kernel/drivers/usb/serial/ch341.ko
+
+If the developer plugs in the FireBeetle 2 to a USB port and then uses the terminal window command: 
+
+$ lsusb -t, 
+
+he should see an output stream showing that the ch341 driver is attached to a usb port.
+
+   ==> Port 2: Dev 7, If 0, Class=Vendor Specific Class, Driver=ch341, 12M 
+
+This establishs that the driver is defined in the kernel and loaded for use.
+
+This does NOT establish that the user has permission to use the driver.
+
+Setting User Permissions to Use The CH341 Driver
+
+
+
